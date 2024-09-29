@@ -1,0 +1,1 @@
+console.log('Ejecutado desde public/js/app.js')
