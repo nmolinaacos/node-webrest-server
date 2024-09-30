@@ -1,0 +1,29 @@
+import { Router } from "express";
+import { TodosController } from "./controller";
+
+
+
+
+export class TodoRoutes {
+
+
+    static get routes(): Router {
+
+        const router = Router();
+        const todoController = new TodosController();
+
+        //! Se enviar unicamente la referencia de la funcion por que los parametros que se envian son los mismo en el mismo orden. (Forma corta de 'router.get('/api/todos',(req, res) => todoController.getTodos(req,res));' )
+        //router.get('/api/todos',todoController.getTodos);
+        
+        router.get('/',(req, res) => todoController.getTodos(req,res));
+        router.get('/:id',(req, res) => todoController.getTodoById(req,res));
+
+        router.post('/',(req, res) => todoController.createTodo(req,res));
+        router.put('/:id',(req, res) => todoController.updateTodo(req,res));
+        router.delete('/:id',(req, res) => todoController.deleteTodo(req,res));
+        return router;
+    }
+
+
+
+}
